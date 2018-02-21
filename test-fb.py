@@ -5,7 +5,7 @@ import json
 FB_GROUP_ID = '1834901519863165'
 # get access token from
 # https://developers.facebook.com/tools/explorer"
-access_token = 'EAACEdEose0cBAA3ZBapZCZCymFUyVnRKc80dyuxSHXNeqH6AC1sR4UJooz721RQw2BYVCAvFZC2KiZBUJClOGJRLsEJ2vlbmMfWHmlp45unFhXnbKYCtLYhGl98vGlmuAuoa5G04U8wWzQbD7ZAtpULrbs0DQL7OzCfLqvX2c8E35EjV2XDPYbXh3bFz9qxhZCR0LYwASin766SqEZA4fmyOsw2ZARo6ZBCUfdYBa72ZCE70QZDZD'
+access_token = None
 if access_token == None:
     access_token = raw_input("\nCopy and paste token from https://developers.facebook.com/tools/explorer\n>  ")
 
