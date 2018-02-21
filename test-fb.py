@@ -2,6 +2,9 @@ import requests
 import json
 
 #TODO: fill in the FB_GROUP_ID and your access token
+#Access token needs permission: publish actions (set to public)
+
+#Group ID for a sample group
 FB_GROUP_ID = '1834901519863165'
 # get access token from
 # https://developers.facebook.com/tools/explorer"
@@ -25,7 +28,7 @@ try:
 except:
     CACHE_DICTION = {}
 
-#function gets data from caching or API
+#function gets data from caching or API for get requests
 def getWithCaching(baseURL, params = {}):
     req = requests.Request(method = 'GET', url = baseURL, params = sorted(params.items()))
     prepped = req.prepare()
@@ -54,5 +57,6 @@ url_params["fields"] = "message,likes{name},from,comments{from,comments{likes,me
 url_params['filter'] = 'stream'
 url_params["limit"] = 200
 
+#Test posting to a Facebook Group
 r = requests.post('{}/feed'.format(FB_BASEURL), data={'message': 'Hello from Python File', 'access_token': access_token})
 print(r.status_code)
