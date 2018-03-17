@@ -52,10 +52,9 @@ def getWithCaching(baseURL, params = {}):
 # Building the Facebook parameters dictionary
 url_params = {}
 url_params["access_token"] = access_token
-#post messages, likes, comments, subcomments, sublikes, submessages
-url_params["fields"] = "message,from"
+url_params["fields"] = "message"
 url_params['filter'] = 'stream'
-url_params["limit"] = 200
+url_params["limit"] = 5
 
 #Get posts from the Facebook group
 try:
@@ -65,22 +64,31 @@ except:
     print('Failed to get data from group')
     sys.exit(0)
 
-
-#Test posting to a Facebook Group
-# r = requests.post('{}/feed'.format(FB_BASEURL), data={'message': 'Hello from Python File', 'access_token': access_token})
-# print(r.status_code)
-
-#Comment on posts that meet criteria
-#for every post in the feed
+#Look through every post in the feed for a URL to do action on
 for post in fb_posts:
     #check for 'message' key in post, which contains the text of the post
     if 'message' in post:
-        #criteria for things in the message
-        #dummy criteria below
-        if 'Python' in post['message']:
-            #get that post's ID
-            ID = post['id']
-            #post request to comment on that post
-            #below request does not work because of api deprecation
-            r = requests.post('{}/{}'.format(FB_BASEURL, ID), data={'message': 'commenting on all posts containing "Python"', 'access_token': access_token})
-            print(r.status_code)
+        #get words in the message
+        words = post['message'].split()
+        #for each word, check for url
+        for word in words:
+            if 'http' in word and '.' in word and '/' in word:
+                URL = word
+
+                #scrape the information in the url
+
+
+                #run text through paralleldots to find keywords
+
+
+                #go to news api to find articles
+
+
+                #use paralleldots to find the most similar article to initial url
+
+                #choose the URL that we want to post and save in variable
+                #url_to_post =
+
+        #POST request to post the url in the group
+        r = requests.post('{}/feed'.format(FB_BASEURL), data={'message': url_to_post, 'access_token': access_token})
+        print(r.status_code)
