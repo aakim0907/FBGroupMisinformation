@@ -6,6 +6,22 @@ PARALLELDOTS_KEY = '4FJEnSvGxUI6FCYl64yWK2iDE4AqZpQso150wqrilr0'
 
 paralleldots.set_api_key(PARALLELDOTS_KEY)
 
+def get_keywords( text ):
+	api_key  = get_api_key()
+	if not api_key == None:
+		if type( text ) != str:
+			return { "Error": "Input must be a string." }
+		elif text in [ "", None ]:
+			return { "Error": "Input string cannot be empty." }
+		url = "http://apis.paralleldots.com/v3/keywords"
+		r =  requests.post( url, params= { "api_key": api_key, "text": text } )
+		if r.status_code != 200:
+			return { "Error": "Oops something went wrong!" }
+		r = json.loads( r.text )
+		return r
+	else:
+		return { "Error": "API key does not exist" }
+
 def get_similarity( text_1, text_2 ):
 	api_key = get_api_key()
 	if not api_key == None:
@@ -20,4 +36,4 @@ def get_similarity( text_1, text_2 ):
 		r = json.loads( r.text )
 		return r
 	else:
-return { "Error": "API key does not exist" }
+		return { "Error": "API key does not exist" }
