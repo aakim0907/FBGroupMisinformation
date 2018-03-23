@@ -1,39 +1,9 @@
-import requests
-import json
 import paralleldots
 
-PARALLELDOTS_KEY = '4FJEnSvGxUI6FCYl64yWK2iDE4AqZpQso150wqrilr0'
+api_key   = "4FJEnSvGxUI6FCYl64yWK2iDE4AqZpQso150wqrilr0"
+text      = "Prime Minister Narendra Modi tweeted a link to the speech Human Resource Development Minister Smriti Irani made in the Lok Sabha during the debate on the ongoing JNU row and the suicide of Dalit scholar Rohith Vemula at the Hyderabad Central University."
 
-paralleldots.set_api_key(PARALLELDOTS_KEY)
 
-def get_keywords( text ):
-	api_key  = get_api_key()
-	if not api_key == None:
-		if type( text ) != str:
-			return { "Error": "Input must be a string." }
-		elif text in [ "", None ]:
-			return { "Error": "Input string cannot be empty." }
-		url = "http://apis.paralleldots.com/v3/keywords"
-		r =  requests.post( url, params= { "api_key": api_key, "text": text } )
-		if r.status_code != 200:
-			return { "Error": "Oops something went wrong!" }
-		r = json.loads( r.text )
-		return r
-	else:
-		return { "Error": "API key does not exist" }
+paralleldots.set_api_key(api_key)
 
-def get_similarity( text_1, text_2 ):
-	api_key = get_api_key()
-	if not api_key == None:
-		if type( text_1 ) != str or type( text_2 ) != str:
-			return { "Error": "Input must be a string." }
-		elif text_1 == "" or text_2 == "":
-			return { "Error": "Input string cannot be empty." }
-		url = "http://apis.paralleldots.com/v3/similarity"
-		r =  requests.post( url, params= { "api_key": api_key, "text_1": text_1, "text_2": text_2 } )
-		if r.status_code != 200:
-			return { "Error": "Oops something went wrong!" }
-		r = json.loads( r.text )
-		return r
-	else:
-		return { "Error": "API key does not exist" }
+print( paralleldots.keywords( text ) )
