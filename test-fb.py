@@ -8,7 +8,7 @@ FB_GROUP_ID = '1834901519863165'
 # https://developers.facebook.com/tools/explorer"
 #TODO fill in access token
 #Access token needs permission: publish actions (set to public)
-access_token = None
+access_token = 'EAACEdEose0cBAE33UL0Yo3lQzZCbORxojsMqSAMZA1XJLIqmd6eSYhZCIHXpQxVsKMFdPy2Fb8JoRiAUT9bFP0cqXz3Vadt2qIWHF4LFVXrgegiZCypigcCTDNmRftEm8FVOrTn37MmHiohxIs7GPMwEEHs06YK39fwwrR6qx26tEIHRaXQHZA5jjy1u6O5sZD'
 if access_token == None:
     access_token = raw_input("\nCopy and paste token from https://developers.facebook.com/tools/explorer\n>  ")
 
@@ -52,43 +52,38 @@ def getWithCaching(baseURL, params = {}):
 # Building the Facebook parameters dictionary
 url_params = {}
 url_params["access_token"] = access_token
-url_params["fields"] = "message"
+url_params["fields"] = "message,link"
 url_params['filter'] = 'stream'
-url_params["limit"] = 5
+url_params["limit"] = 200
 
 #Get posts from the Facebook group
 try:
     r = getWithCaching('{}/feed'.format(FB_BASEURL), params=url_params)
     fb_posts = json.loads(r)['data']
 except:
-    print('Failed to get data from group')
+    print('Failed to get data from group. check access token expiration')
     sys.exit(0)
 
 #Look through every post in the feed for a URL to do action on
 for post in fb_posts:
-    #check for 'message' key in post, which contains the text of the post
-    if 'message' in post:
-        #get words in the message
-        words = post['message'].split()
-        #for each word, check for url
-        for word in words:
-            if 'http' in word and '.' in word and '/' in word:
-                URL = word
+    #check for link field in post, which contains the URL attached to the post
+    if 'link' in post:
+        print(post['link'])
 
-                #scrape the information in the url
+        #scrape the information in the url
 
 
-                #run text through paralleldots to find keywords
+        #run text through paralleldots to find keywords
 
 
-                #go to news api to find articles
+        #go to news api to find articles
 
 
-                #use paralleldots to find the most similar article to initial url
+        #use paralleldots to find the most similar article to initial url
 
-                #choose the URL that we want to post and save in variable
-                #url_to_post =
+        #choose the URL that we want to post and save in variable
+        #url_to_post =
 
         #POST request to post the url in the group
-        r = requests.post('{}/feed'.format(FB_BASEURL), data={'message': url_to_post, 'access_token': access_token})
-        print(r.status_code)
+        # r = requests.post('{}/feed'.format(FB_BASEURL), data={'message': url_to_post, 'access_token': access_token})
+        # print(r.status_code)
