@@ -3,11 +3,11 @@ import json
 from datetime import date, timedelta
 # https://docs.python.org/3/library/datetime.html#date-objects
 
-def get_articles(keyword_obj):
-  keyword_obj = dict((k, v) for k, v in keyword_obj.items() if v >= 4)
-  keywords = ",".join(keyword_obj.keys())
+# a = {'keywords': [{'confidence_score':0.85759, 'keyword': 'Prime Minister Narendra Modi'}, {'confidence_score':0.34, 'keyword':'bitcoin'}, {'confidence_score':0.945534, 'keyword':'mining'}],'usage':'asdfasd'}
 
-  week_ago = date.today() - timedelta(days=7)
+def get_articles(keyword_obj):
+  keywords = ",".join([keyword['keyword'] for keyword in keyword_obj['keywords'] if keyword.get('confidence_score') > 0.9])
+  week_ago = date.today()-timedelta(days=7)
 
   baseurl = ('https://newsapi.org/v2/everything?')
   query = 'q={}&'.format(keywords)
@@ -19,10 +19,11 @@ def get_articles(keyword_obj):
 
   return [article['url'] for article in response['articles']]
 
-# ORIGINAL
+# print (get_articles(a))
+
 # url = ('https://newsapi.org/v2/everything?' 
 #        'q=bitcoin&'
-#        'from=2018-01-10&'
+#        'from=2018-03-17&'
 #        'sources=the-wall-street-journal,bbc-news,the-economist,google-news,usa-today&'
 #        'sortBy=relevancy&'
 #        'apiKey=ec0b1ca2e1894f9ca009e33dfc7ef619')
