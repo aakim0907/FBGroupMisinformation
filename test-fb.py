@@ -2,6 +2,14 @@ import requests
 import json
 import sys
 from scrapper import scrape_from_url
+import paralleldots
+from newsapi import get_articles
+
+#Set up paralleldots api
+api_key   = "4FJEnSvGxUI6FCYl64yWK2iDE4AqZpQso150wqrilr0"
+paralleldots.set_api_key(api_key)
+
+
 
 #Group ID for a sample group
 FB_GROUP_ID = '1834901519863165'
@@ -66,17 +74,17 @@ except:
     sys.exit(0)
 
 #Look through every post in the feed for a URL to do action on
-for post in fb_posts:
+for post in fb_posts[:2]:
     #check for link field in post, which contains the URL attached to the post
     if 'link' in post:
         #scrape the information in the url
-        print(scrape_from_url(post['link']))
+        text = scrape_from_url(post['link'])
 
         #run text through paralleldots to find keywords
-
+        keywords = paralleldots.keywords(text)
 
         #go to news api to find articles
-
+        print(get_articles(keywords))
 
         #use paralleldots to find the most similar article to initial url
 
