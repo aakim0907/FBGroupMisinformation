@@ -3,12 +3,12 @@ import json
 from datetime import date, timedelta
 # https://docs.python.org/3/library/datetime.html#date-objects
 
-# a = {'keywords': [{'confidence_score':0.85759, 'keyword': 'Prime Minister Narendra Modi'}, {'confidence_score':0.34, 'keyword':'bitcoin'}, {'confidence_score':0.945534, 'keyword':'mining'}],'usage':'asdfasd'}
+a = {'keywords': [{'confidence_score':0.45759, 'keyword': 'Prime Minister Narendra Modi'}, {'confidence_score':0.95, 'keyword':'bitcoin'}, {'confidence_score':0.945534, 'keyword':'mining'}],'usage':'asdfasd'}
 
 def get_articles(keyword_obj):
-  keywords = ",".join([keyword['keyword'] for keyword in keyword_obj['keywords'] if keyword.get('confidence_score') > 0.9])
+  keywords = " OR ".join([keyword['keyword'] for keyword in keyword_obj['keywords'] if keyword.get('confidence_score') > 0.9])
   week_ago = date.today()-timedelta(days=7)
-  print(keywords)
+  print (keywords)
   baseurl = ('https://newsapi.org/v2/everything?')
   query = 'q={}&'.format(keywords)
   fromdate = 'from={}&'.format(week_ago)
