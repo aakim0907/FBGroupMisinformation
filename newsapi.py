@@ -8,7 +8,7 @@ from datetime import date, timedelta
 def get_articles(keyword_obj):
   keywords = ",".join([keyword['keyword'] for keyword in keyword_obj['keywords'] if keyword.get('confidence_score') > 0.9])
   week_ago = date.today()-timedelta(days=7)
-  print(keywords)
+
   baseurl = ('https://newsapi.org/v2/everything?')
   query = 'q={}&'.format(keywords)
   fromdate = 'from={}&'.format(week_ago)
