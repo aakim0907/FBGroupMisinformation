@@ -1,6 +1,7 @@
 import requests
 import json
 import sys
+from scrapper import scrape_from_url
 
 #Group ID for a sample group
 FB_GROUP_ID = '1834901519863165'
@@ -68,10 +69,8 @@ except:
 for post in fb_posts:
     #check for link field in post, which contains the URL attached to the post
     if 'link' in post:
-        print(post['link'])
-
         #scrape the information in the url
-
+        print(scrape_from_url(post['link']))
 
         #run text through paralleldots to find keywords
 

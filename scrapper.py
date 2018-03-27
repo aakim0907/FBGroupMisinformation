@@ -10,12 +10,13 @@ economist = "https://www.economist.com/news/finance-and-economics/21735055-china
 URL = economist
 
 # extracter code
-
-r = requests.get(URL)
-soup = BeautifulSoup(r.content,"html.parser")
-ptags = soup.find_all('p')
-extracted = []
-for tag in ptags:
-    for x in tag.descendants:
-        if len(x)>0 and str(type(x)) == "<class 'bs4.element.NavigableString'>":
-            print(x)
+def scrape_from_url(URL):
+    r = requests.get(URL)
+    soup = BeautifulSoup(r.content,"html.parser")
+    ptags = soup.find_all('p')
+    extracted = []
+    for tag in ptags:
+        for x in tag.descendants:
+            if len(x) > 0 and str(type(x)) == "<class 'bs4.element.NavigableString'>":
+                extracted.append(x)
+    return extracted
