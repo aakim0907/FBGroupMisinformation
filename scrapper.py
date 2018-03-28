@@ -19,5 +19,5 @@ def scrape_from_url(URL):
         for x in tag.descendants:
             if len(x) > 0 and str(type(x)) == "<class 'bs4.element.NavigableString'>":
                 extracted.append(x)
-    #make into one string            
+    #make into one string
     return ' '.join(extracted)
