@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import paralleldots
 
 # Insert URL
 indiatv = "https://www.indiatvnews.com/entertainment/celebrities-okay-for-outsiders-to-be-discriminated-against-in-film-industry-kangana-ranaut-433170"
