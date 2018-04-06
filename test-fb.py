@@ -30,6 +30,19 @@ FB_BASEURL = "https://graph.facebook.com/v2.12/{}".format(FB_GROUP_ID)
 def pretty(obj):
     return json.dumps(obj, sort_keys = True, indent = 2)
 
+#function that, given a url, finds similar urls
+def get_similar_urls(url):
+    #scrape text from url
+    text = scrape_from_url(url)
+    #get keywords from text
+    keywords = paralleldots.keywords(text)
+    #get news article urls from keywords
+    urls_to_post = get_articles(keywords)
+    return urls_to_post
+
+#example
+#print(get_similar_urls('http://www.bbc.co.uk/news/business-42713314'))
+
 # Building the Facebook parameters dictionary
 url_params = {}
 url_params["access_token"] = access_token
@@ -45,54 +58,14 @@ except:
     print('Failed to get data from group. check access token expiration')
     sys.exit(0)
 
-#demo - one article
-#article index 1
-url = fb_posts[1]['link']
-print('Article URL:')
-print(url)
-print('=========\n')
-
-
-text = scrape_from_url(url)
-print('Text from the article:')
-print(text)
-print('=========\n')
-
-keywords = paralleldots.keywords(text)
-print('Keywords found from paralleldots api')
-print(pretty(keywords))
-print('=========\n')
-
-url_to_post = get_articles(keywords)
-print('URLs to related news articles found')
-print(url_to_post)
-
-r = requests.post('{}/feed'.format(FB_BASEURL), data={'message': url_to_post[0], 'access_token': access_token})
-print('Status code of url that is posted:')
-print(r.status_code)
-
-
-
-
 #Look through every post in the feed for a URL to do action on
-# for post in fb_posts[5:7]:
+# for post in fb_posts:
     #check for link field in post, which contains the URL attached to the post
     # if 'link' in post:
         #scrape the information in the url
-        # text = scrape_from_url(post['link'])
-        # print(pretty(text))
-
-        #run text through paralleldots to find keywords
-        # keywords = paralleldots.keywords(text)
-
-        #go to news api to find articles
-        # print(get_articles(keywords))
-
-        #use paralleldots to find the most similar article to initial url
-
-        #choose the URL that we want to post and save in variable
-        #url_to_post =
-
-        #POST request to post the url in the group
-        # r = requests.post('{}/feed'.format(FB_BASEURL), data={'message': url_to_post, 'access_token': access_token})
-        # print(r.status_code)
+        # urls = get_similar_urls(post['link'])
+        # if len(urls) > 0:
+            # url_to_post = urls[0]
+            #POST request to post the url in the group
+            # r = requests.post('{}/feed'.format(FB_BASEURL), data={'message': url_to_post, 'access_token': access_token})
+            # print(r.status_code)
