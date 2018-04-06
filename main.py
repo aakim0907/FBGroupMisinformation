@@ -6,7 +6,7 @@ import config
 import webbrowser
 
 #from our code
-from scrapper import scrape_from_url
+from scraper import scrape_from_url
 from cortical import get_keywords
 from newsapi import get_article_urls
 from caching import getWithCaching
@@ -40,9 +40,9 @@ def get_similar_urls(url):
 #example of it fetching an article
 # article = 'https://www.buzzfeed.com/michaelblackmon/new-york-city-police-are-investigating-a-scuffle-involving?bfsplash&utm_term=.wqEm1qPZw#.nfxKeO6X7'
 # for url in get_similar_urls(article)[:5]:
-    # print(url)
-    #opens it in browser so you can see the news articles right away and see if relevant
-    # webbrowser.get().open(url)
+#     print(url)
+#     # opens it in browser so you can see the news articles right away and see if relevant
+#     webbrowser.get().open(url)
 
 # Building the Facebook parameters dictionary
 # url_params = {}

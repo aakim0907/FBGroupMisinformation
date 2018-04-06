@@ -9,7 +9,7 @@ economist = "https://www.economist.com/news/finance-and-economics/21735055-china
 teaparty = "https://www.teaparty.org/iraq-war-vet-lost-leg-battle-shuts-david-hogg-brutal-message-298358/"
 infowars = "https://www.infowars.com/piers-morgan-asks-where-britain-would-be-without-americas-guns-alex-jones-friend-youd-be-speaking-german/"
 pew = "http://www.pewinternet.org/2011/03/17/the-internet-and-political-news-sources/"
-buzzfeed = 'https://www.buzzfeed.com/michaelblackmon/new-york-city-police-are-investigating-a-scuffle-involving?bfsplash&utm_term=.wqEm1qPZw#.nfxKeO6X7'
+buzzfeed = "https://www.buzzfeed.com/michaelblackmon/new-york-city-police-are-investigating-a-scuffle-involving?bfsplash&utm_term=.wqEm1qPZw#.nfxKeO6X7"
 
 def extract_from_tags(soup, tag):
     tags = soup.find_all(tag)
