@@ -12,11 +12,21 @@ economist = "https://www.economist.com/news/finance-and-economics/21735055-china
 def scrape_from_url(URL):
     r = requests.get(URL)
     soup = BeautifulSoup(r.content,"html.parser")
-    ptags = soup.find_all('p')
+    title = soup.title.string
+    print('title is ', title)
+    #get all text in h1s
+    h1tags = soup.find_all('h1')
     extracted = []
-    for tag in ptags:
-        for x in tag.descendants:
-            if len(x) > 0 and str(type(x)) == "<class 'bs4.element.NavigableString'>":
-                extracted.append(x)
-    #make into one string
-    return ' '.join(extracted)
+    for h1 in h1tags:
+        for x in h1.descendants:
+                if len(x) > 0 and str(type(x)) == "<class 'bs4.element.NavigableString'>":
+                    extracted.append(x)
+    h1_string = " ".join(extracted)
+    print('h1s are ', h1_string)
+    #cross check title with h1 and only include those that are in both
+    title_words = title.split()
+    h1_words = h1_string.split()
+    headline = " ".join([word for word in title_words if word in h1_words])
+    return headline
+
+# print(scrape_from_url(economist))
