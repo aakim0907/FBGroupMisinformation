@@ -9,7 +9,7 @@ b = ['vet', 'iraq', 'leg', 'david', 'message', 'hogg']
 def get_article_urls(keyword_obj):
   keywords = " OR ".join([keyword['keyword'] for keyword in keyword_obj['keywords'] if keyword.get('confidence_score') > 0.97])
   week_ago = date.today()-timedelta(days=7)
-  
+
   baseurl = ('https://newsapi.org/v2/everything?')
   query = 'q={}&'.format(keywords)
   fromdate = 'from={}&'.format(week_ago)
@@ -24,7 +24,7 @@ def get_article_urls(keyword_obj):
 
 def get_articles(keywords):
   week_ago = date.today()-timedelta(days=7)
-  
+
   baseurl = ('https://newsapi.org/v2/everything?')
   query = 'q={}&'.format(" OR ".join(keywords))
   fromdate = 'from={}&'.format(week_ago)
@@ -35,7 +35,7 @@ def get_articles(keywords):
 
   return [{'url': article['url'], 'content': article['title']+" "+article['description']} for article in response['articles']]
 
-print (get_articles(b))
+# print (get_articles(b))
 
 # url = ('https://newsapi.org/v2/everything?'
 #        'q=bitcoin&'
