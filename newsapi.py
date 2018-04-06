@@ -6,12 +6,11 @@ import config
 a = {'keywords': [{'confidence_score':0.45759, 'keyword': 'Prime Minister Narendra Modi'}, {'confidence_score':0.95, 'keyword':'bitcoin'}, {'confidence_score':0.945534, 'keyword':'mining'}],'usage':'asdfasd'}
 b = ['vet', 'iraq', 'leg', 'david', 'message', 'hogg']
 
-def get_article_urls(keyword_obj):
-  keywords = " OR ".join([keyword['keyword'] for keyword in keyword_obj['keywords'] if keyword.get('confidence_score') > 0.97])
+def get_article_urls(keywords):
   week_ago = date.today()-timedelta(days=7)
   
   baseurl = ('https://newsapi.org/v2/everything?')
-  query = 'q={}&'.format(keywords)
+  query = 'q={}&'.format(" OR ".join(keywords))
   fromdate = 'from={}&'.format(week_ago)
   moreurl = ('sources=the-wall-street-journal,bbc-news,the-economist,google-news,usa-today&'
             'sortBy=relevancy&'
@@ -20,7 +19,7 @@ def get_article_urls(keyword_obj):
 
   return [article['url'] for article in response['articles']]
 
-# print (get_article_urls(a))
+print (get_article_urls(b))
 
 def get_articles(keywords):
   week_ago = date.today()-timedelta(days=7)
@@ -35,7 +34,7 @@ def get_articles(keywords):
 
   return [{'url': article['url'], 'content': article['title']+" "+article['description']} for article in response['articles']]
 
-print (get_articles(b))
+# print (get_articles(b))
 
 # url = ('https://newsapi.org/v2/everything?'
 #        'q=bitcoin&'
