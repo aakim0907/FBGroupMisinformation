@@ -1,18 +1,15 @@
-from __future__ import unicode_literals
-from builtins import str
 import requests
 import json
 import sys
+import retinasdk
+import config
+import webbrowser
 
 #from our code
 from scrapper import scrape_from_url
-import paralleldots
-from newsapi import get_articles
+from cortical import get_keywords
+from newsapi import get_article_urls
 from caching import getWithCaching
-
-#Set up paralleldots api
-api_key   = "4FJEnSvGxUI6FCYl64yWK2iDE4AqZpQso150wqrilr0"
-paralleldots.set_api_key(api_key)
 
 #Group ID for a sample group
 FB_GROUP_ID = '1834901519863165'
@@ -35,28 +32,32 @@ def get_similar_urls(url):
     #scrape text from url
     text = scrape_from_url(url)
     #get keywords from text
-    keywords = paralleldots.keywords(text)
+    keywords = get_keywords(text)
     #get news article urls from keywords
-    urls_to_post = get_articles(keywords)
+    urls_to_post = get_article_urls(keywords)
     return urls_to_post
 
-#example
-#print(get_similar_urls('http://www.bbc.co.uk/news/business-42713314'))
+#example of it fetching an article
+# article = 'https://www.buzzfeed.com/michaelblackmon/new-york-city-police-are-investigating-a-scuffle-involving?bfsplash&utm_term=.wqEm1qPZw#.nfxKeO6X7'
+# for url in get_similar_urls(article)[:5]:
+    # print(url)
+    #opens it in browser so you can see the news articles right away and see if relevant
+    # webbrowser.get().open(url)
 
 # Building the Facebook parameters dictionary
-url_params = {}
-url_params["access_token"] = access_token
-url_params["fields"] = "message,link"
-url_params['filter'] = 'stream'
-url_params["limit"] = 200
-
-#Get posts from the Facebook group
-try:
-    r = getWithCaching('{}/feed'.format(FB_BASEURL), params=url_params)
-    fb_posts = json.loads(r)['data']
-except:
-    print('Failed to get data from group. check access token expiration')
-    sys.exit(0)
+# url_params = {}
+# url_params["access_token"] = access_token
+# url_params["fields"] = "message,link"
+# url_params['filter'] = 'stream'
+# url_params["limit"] = 200
+#
+# #Get posts from the Facebook group
+# try:
+#     r = getWithCaching('{}/feed'.format(FB_BASEURL), params=url_params)
+#     fb_posts = json.loads(r)['data']
+# except:
+#     print('Failed to get data from group. check access token expiration')
+#     sys.exit(0)
 
 #Look through every post in the feed for a URL to do action on
 # for post in fb_posts:

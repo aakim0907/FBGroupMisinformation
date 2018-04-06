@@ -11,4 +11,4 @@ sample = "Iraq War Vet Who Lost His Leg in Battle Shuts Down David Hogg With Bru
 s1 = "Frank Stallone apologizes 'to David Hogg especially' for profane Parkland tweetAfter attacking David Hogg, a gun-control activist who survived the Parkland, Fla., school shooting, Frank STallone is apologizing"
 
 
-print (get_keywords(s1))
+# print (get_keywords(s1))

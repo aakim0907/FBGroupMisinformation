@@ -19,7 +19,7 @@ def get_article_urls(keywords):
 
   return [article['url'] for article in response['articles']]
 
-print (get_article_urls(b))
+# print (get_article_urls(b))
 
 def get_articles(keywords):
   week_ago = date.today()-timedelta(days=7)
