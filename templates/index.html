@@ -16,7 +16,9 @@
     {% if results %}
     <div>
         <p>Here are five similar articles:</p>
-        <p>{{ results }}</p>
+        {% for result in results %}
+            <p><a href="{{ result }}" target="_blank">{{ result }}</a></p>
+        {% endfor %}
     </div>
     {% endif %}
 </body>
