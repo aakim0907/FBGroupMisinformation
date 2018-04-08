@@ -20,7 +20,7 @@
             <p class="results-heading">Here are five similar articles:</p>
             <div class="results-links">
             {% for result in results %}
-                <a class="results-link" href="{{ result }}" target="_blank">{{ result }}</a>
+                <a class="results-link" href="{{ result.url }}" target="_blank">{{ result.title }}</a>
             {% endfor %}
             </div>
         </div>

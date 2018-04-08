@@ -32,7 +32,7 @@ def get_articles(keywords):
             'apiKey={}'.format(config.newsapi_api_key))
   response = requests.get(baseurl+query+fromdate+moreurl).json()
 
-  return [{'url': article['url'], 'content': article['title']+" "+article['description']} for article in response['articles']]
+  return [{'url': article['url'], 'title': article['title']} for article in response['articles']]
 
 # print (get_articles(b))
 

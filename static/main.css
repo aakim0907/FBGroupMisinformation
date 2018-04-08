@@ -84,12 +84,12 @@ a{
     border-color:#ff4b1f;
 }
 .results{
-    margin-top:3em;
+    margin-top:5em;
     color:white;
     text-align: left;
     display:flex;
     align-items:top;
-    justify-content:space-around;
+    justify-content:space-evenly;
     line-height:1.4;
 }
 .results-heading{

@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 #from our code
 from scraper import scrape_from_url
 from cortical import get_keywords
-from newsapi import get_article_urls
+from newsapi import get_article_urls, get_articles
 from caching import getWithCaching
 
 
@@ -21,23 +21,19 @@ app = Flask(__name__)
 def index(results=None):
     if request.args.get('link', None):
         article = request.args.get('link', None)
-        results = get_similar_urls(article)[:5]
-        # for result in results:
-        #     r = requests.get(result)
-        #     soup = BeautifulSoup(r.content,"html.parser")
-        #     title = soup.title.string
+        results = get_similar_articles(article)[:5]
     return render_template('index.html', results=results)
 
 
 #function that, given a url, finds similar urls
-def get_similar_urls(url):
+def get_similar_articles(url):
     #scrape text from url
     text = scrape_from_url(url)
     #get keywords from text
     keywords = get_keywords(text)
     #get news article urls from keywords
-    urls_to_post = get_article_urls(keywords)
-    return urls_to_post
+    articles_to_post = get_articles(keywords)
+    return articles_to_post
 
 #example of it fetching an article
 # article = request.args.get('link', None)
