@@ -7,7 +7,7 @@ import webbrowser
 from bs4 import BeautifulSoup
 
 #from our code
-from scraper import scrape_from_url
+from scraper import scrape_from_url, scrape_title
 from cortical import get_keywords
 from newsapi import get_article_urls, get_articles
 from caching import getWithCaching
@@ -19,14 +19,14 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index(results=None):
+    title =''
+    article=''
     if request.args.get('link', None):
         article = request.args.get('link', None)
-        # r = requests.get(article)
-        # soup = BeautifulSoup(r.content,"html.parser")
-        # title = soup.title.string
+        title = scrape_title(article)
 
         results = get_similar_articles(article)[:5]
-    return render_template('index.html', results=results)
+    return render_template('index.html', results=results, title=title, article=article)
 
 
 #function that, given a url, finds similar urls

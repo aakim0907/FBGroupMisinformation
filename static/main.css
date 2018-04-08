@@ -9,6 +9,7 @@
 html,body{
     font-family: Helvetica, Arial, sans-serif;
     font-size:18px;
+    color:#fff;
     background: #ff4b1f;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ff9068, #ff4b1f);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ff9068, #ff4b1f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -52,14 +53,17 @@ a{
     padding: 0 20px;
     text-align:center;
     margin:0 auto;
-}
-
-.paste{
     margin-top:10em;
+}
+.title{
+    font-size:2.5em;
+    letter-spacing: 1px;
+}
+.paste{
+    margin-top:3em;
 }
 .paste-label{
     font-size:1.5em;
-    color:#fff;
 }
 .paste-bar{
     padding: 1em;
@@ -83,8 +87,23 @@ a{
     color: #ff4b1f;
     border-color:#ff4b1f;
 }
-.results{
+.article{
+    display:flex;
+    align-items:top;
+    justify-content:space-evenly;
+    text-align: left;
     margin-top:5em;
+    line-height:1.4;
+}
+.article-heading{
+    text-transform: uppercase;
+    font-size: .9em;
+    font-weight: bold;
+}
+.article-link{
+}
+.results{
+    margin-top:2em;
     color:white;
     text-align: left;
     display:flex;
@@ -97,7 +116,7 @@ a{
     font-size: .9em;
     font-weight: bold;
 }
-.results-link {
+.link {
     color:white;
     text-decoration: underline;
     margin: 0 0 1.5em;
@@ -105,6 +124,6 @@ a{
     transition:all .3s;
     opacity:1;
 }
-.results-link:hover{
+.link:hover{
     opacity:.7;
 }

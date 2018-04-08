@@ -53,3 +53,9 @@ def scrape_from_url(URL):
 
     return (headline + " " + first_paragraph).encode('utf-8')
 # print(scrape_from_url(pew))
+
+def scrape_title(URL):
+    r = requests.get(URL)
+    soup = BeautifulSoup(r.content,"html.parser")
+    title = soup.title.string
+    return title

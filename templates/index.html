@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Get neutral articles</title>
+    <title>Netral Article Finder</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
     <div class="wrapper">
+        <h1 class="title">Neutral Article Finder</h1>
         <form class="paste" action = "/" method="get">
-            <label class="paste-label">Paste an article link:</label>
-            <input type="text" name="link" size="50" class="paste-bar">
+            <input type="text" name="link" size="50" class="paste-bar" placeholder="Paste an article link here">
             <input type="submit" value="Submit" class="paste-button">
         </form>
         
         {% if results %}
+        <div class="article">
+            <p class="article-heading">The article you posted:</p>
+            <a class="article-link link" href="{{ article }}" target="_blank">{{ title }}</a>
+        </div>
         <div class="results">
             <p class="results-heading">Here are five similar articles:</p>
             <div class="results-links">
             {% for result in results %}
-                <a class="results-link" href="{{ result.url }}" target="_blank">{{ result.title }}</a>
+                <a class="link" href="{{ result.url }}" target="_blank">{{ result.title }}</a>
             {% endfor %}
             </div>
         </div>
