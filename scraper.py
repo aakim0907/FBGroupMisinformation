@@ -51,5 +51,5 @@ def scrape_from_url(URL):
             first_paragraph = p
             break;
 
-    return headline + " " + first_paragraph
+    return (headline + " " + first_paragraph).encode('utf-8')
 # print(scrape_from_url(pew))
