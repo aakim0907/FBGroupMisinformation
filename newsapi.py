@@ -27,7 +27,7 @@ def get_articles(keywords):
   baseurl = ('https://newsapi.org/v2/everything?')
   query = 'q={}&'.format(" OR ".join(keywords))
   fromdate = 'from={}&'.format(week_ago)
-  moreurl = ('sources=the-wall-street-journal,bbc-news,the-economist,google-news,usa-today&'
+  moreurl = ('sources=the-wall-street-journal,bbc-news,the-economist,usa-today&'
             'sortBy=relevancy&'
             'apiKey={}'.format(config.newsapi_api_key))
   response = requests.get(baseurl+query+fromdate+moreurl).json()

@@ -8,7 +8,7 @@ import webbrowser
 #from our code
 from scraper import scrape_from_url
 from cortical import get_keywords
-from newsapi import get_article_urls, get_articles
+from newsapi import get_article_urls
 from caching import getWithCaching
 
 
@@ -29,18 +29,18 @@ def pretty(obj):
     return json.dumps(obj, sort_keys = True, indent = 2)
 
 #function that, given a url, finds similar urls
-def get_similar_articles(url):
+def get_similar_urls(url):
     #scrape text from url
     text = scrape_from_url(url)
     #get keywords from text
     keywords = get_keywords(text)
     #get news article urls from keywords
-    articles_to_post = get_articles(keywords)
-    return articles_to_post
+    urls_to_post = get_article_urls(keywords)
+    return urls_to_post
 
 #example of it fetching an article
 article = 'https://www.buzzfeed.com/michaelblackmon/new-york-city-police-are-investigating-a-scuffle-involving?bfsplash&utm_term=.wqEm1qPZw#.nfxKeO6X7'
-for url in get_similar_articles(article)[:5]:
+for url in get_similar_urls(article)[:5]:
     print(url)
     # opens it in browser so you can see the news articles right away and see if relevant
     # webbrowser.get().open(url)
