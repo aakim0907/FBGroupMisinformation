@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Get neutral articles</title>
+</head>
+<body>
+    <form action = "/" method="get">
+        <label>Paste an article link:</label>
+        <input type="text" name="link" size="25">
+        <input type="submit" value="Submit">
+    </form>
+    
+    {% if results %}
+    <div>
+        <p>Here are five similar articles:</p>
+        <p>{{ results }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>

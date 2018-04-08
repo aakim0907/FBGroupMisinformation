@@ -11,6 +11,7 @@ from cortical import get_keywords
 from newsapi import get_article_urls
 from caching import getWithCaching
 
+
 #Group ID for a sample group
 FB_GROUP_ID = '1834901519863165'
 # get access token from
@@ -38,11 +39,11 @@ def get_similar_urls(url):
     return urls_to_post
 
 #example of it fetching an article
-# article = 'https://www.buzzfeed.com/michaelblackmon/new-york-city-police-are-investigating-a-scuffle-involving?bfsplash&utm_term=.wqEm1qPZw#.nfxKeO6X7'
-# for url in get_similar_urls(article)[:5]:
-#     print(url)
-#     # opens it in browser so you can see the news articles right away and see if relevant
-#     webbrowser.get().open(url)
+article = 'https://www.buzzfeed.com/michaelblackmon/new-york-city-police-are-investigating-a-scuffle-involving?bfsplash&utm_term=.wqEm1qPZw#.nfxKeO6X7'
+for url in get_similar_urls(article)[:5]:
+    print(url)
+    # opens it in browser so you can see the news articles right away and see if relevant
+    # webbrowser.get().open(url)
 
 # Building the Facebook parameters dictionary
 # url_params = {}
