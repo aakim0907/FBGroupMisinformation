@@ -75,8 +75,14 @@ a{
     color: white;
     font-weight: bold;
     font-size: 1em;
+    cursor:pointer;
+    transition: all .3s;
 }
-
+.paste-button:hover{
+    background: white;
+    color: #ff4b1f;
+    border-color:#ff4b1f;
+}
 .results{
     margin-top:3em;
     color:white;
@@ -96,4 +102,9 @@ a{
     text-decoration: underline;
     margin: 0 0 1.5em;
     display: block;
+    transition:all .3s;
+    opacity:1;
+}
+.results-link:hover{
+    opacity:.7;
 }
