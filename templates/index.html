@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Get neutral articles</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
-    <form action = "/" method="get">
-        <label>Paste an article link:</label>
-        <input type="text" name="link" size="25">
-        <input type="submit" value="Submit">
-    </form>
-    
-    {% if results %}
-    <div>
-        <p>Here are five similar articles:</p>
-        {% for result in results %}
-            <p><a href="{{ result }}" target="_blank">{{ result }}</a></p>
-        {% endfor %}
+    <div class="wrapper">
+        <form class="paste" action = "/" method="get">
+            <label class="paste-label">Paste an article link:</label>
+            <input type="text" name="link" size="50" class="paste-bar">
+            <input type="submit" value="Submit" class="paste-button">
+        </form>
+        
+        {% if results %}
+        <div class="results">
+            <p class="results-heading">Here are five similar articles:</p>
+            <div class="results-links">
+            {% for result in results %}
+                <a class="results-link" href="{{ result }}" target="_blank">{{ result }}</a>
+            {% endfor %}
+            </div>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
 </body>
 </html>

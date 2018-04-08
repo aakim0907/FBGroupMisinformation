@@ -41,7 +41,3 @@ def get_similar_urls(url):
 #     print(url)
 #     opens it in browser so you can see the news articles right away and see if relevant
 #     webbrowser.get().open(url)
-
-
-def process_text(text):
-    return "FOO" + text
