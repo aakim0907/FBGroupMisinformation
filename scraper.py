@@ -45,9 +45,11 @@ def scrape_from_url(URL):
 
     #get first paragraph
     ptags = extract_from_tags(soup, 'p')
+    first_paragraph = ""
     for p in ptags:
         if '.' in p:
             first_paragraph = p
             break;
+
     return headline + " " + first_paragraph
 # print(scrape_from_url(pew))
