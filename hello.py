@@ -39,6 +39,3 @@ def get_similar_articles(url):
     articles_to_post = get_articles(keywords)
     return articles_to_post
     
-
-if __name__ == "__hello__":
-    app.run()
